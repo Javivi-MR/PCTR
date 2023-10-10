@@ -30,7 +30,7 @@ public class NewtonRaphson{
 
         //funcion x^2 - 5 -> f' 2x
         System.out.println("------ Funcion x^2 - 5 ------");
-        xn = 3; //cota superior 1
+        xn = 3; //cota superior 3
         for(int i = 0 ; i < n ; i++)
         {
             if(Math.cos(xn) - Math.pow(xn,3) != 0)
