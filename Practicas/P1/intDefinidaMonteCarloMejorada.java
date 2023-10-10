@@ -22,7 +22,6 @@ public class intDefinidaMonteCarloMejorada{
 
     public static void MonteCarlo(int n, Function f)
     {
-        // para la funcion x
         int contExitos = 0;
         Random random = new Random();
         for(int i = 0 ; i < n ; i++)
