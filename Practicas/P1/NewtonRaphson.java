@@ -2,6 +2,7 @@ import java.util.Scanner;
 import java.lang.Math;
 
 public class NewtonRaphson{
+    
     public static void main(String[] args)
     throws Exception{
         Scanner s = new Scanner(System.in);
