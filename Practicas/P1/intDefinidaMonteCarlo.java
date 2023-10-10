@@ -15,7 +15,6 @@ public class intDefinidaMonteCarlo{
     public static void MonteCarlo(int n)
     {
         // para la funcion x
-
         int contExitos = 0;
         Random random = new Random();
         for(int i = 0 ; i < n ; i++)
@@ -26,9 +25,8 @@ public class intDefinidaMonteCarlo{
                 contExitos++;
         }
         System.out.println("La integral aproximada de la funcion x en el rango [0-1] es: " + (float) contExitos/n);
-        
-        //para la funcion sin(x)
 
+        //para la funcion sin(x)
         contExitos = 0;
         for(int i = 0 ; i < n ; i++)
         {
