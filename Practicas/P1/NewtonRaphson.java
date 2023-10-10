@@ -6,9 +6,7 @@ public class NewtonRaphson{
     throws Exception{
         Scanner s = new Scanner(System.in);
         int n = s.nextInt();
-
         MetodoNewtonRaphson(n);
-        
         s.close();
     }
 
@@ -41,6 +39,5 @@ public class NewtonRaphson{
             }
         }
         System.out.println("Resultado: " + xn);
-
     }
 }
