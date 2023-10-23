@@ -6,3 +6,4 @@ El repositorio está organizado en las siguientes secciones:
 - Prácticas: código fuente para los ejercicios prácticos de programación realizados durante el curso.
 - Seminarios: notebooks y material complementario para los seminarios dictados.
 - Exámenes: enunciados y soluciones de exámenes de años anteriores.
+- Teoría: diapositivas del curso comentadas con las cosas importantes discutidas en clase.
