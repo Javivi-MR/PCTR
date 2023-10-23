@@ -3,10 +3,10 @@ public class prodEscalar {
         double[] v = new double[1000000];
         double[] w = new double[1000000];
         //llenando el vector
-        for(int i=0; i<v.length; i++)v[i]=1;
-        for(int i=0; i<v.length; i++)w[i]=1;
+        for(int i=0; i<v.length; i++)v[i]=Math.random();
+        for(int i=0; i<v.length; i++)w[i]=Math.random();
         //vector lleno
-
+        
         //realizando prod escalar
         double resultado = 0;
         long iniTiempo = System.nanoTime();

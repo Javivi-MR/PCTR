@@ -26,15 +26,20 @@ public class prodEscalarParalelo extends Thread{
         b = new double[n];
         double sumaTotal = 0;
         sumasParciales = new double[numHebras];
-
+        //Llenando vectores
         for(int i = 0 ; i < n ; i++){
-            a[i] = 1;
-            b[i] = 1;
+            a[i] = Math.random();
+            b[i] = Math.random();
         }
-
+        //declaracion de hebras
         prodEscalarParalelo[] hebras = new prodEscalarParalelo[numHebras];
-        for(int i = 0 ; i < numHebras ; i++) hebras[i] = new prodEscalarParalelo(i, (n/numHebras)*i, (n/numHebras)*(i+1));
-        
+        if(n%numHebras == 0) //cuando el rango del problema es divisible por el numero de hebras
+            for(int i = 0 ; i < numHebras ; i++) hebras[i] = new prodEscalarParalelo(i,(n/numHebras)* i, (n/numHebras)*(i+1)); 
+        else{ //Hay que asignar a la ultima una mayor carga de trabajo
+            for(int i = 0 ; i < numHebras-1 ; i++) hebras[i] = new prodEscalarParalelo(i,(n/numHebras)* i, (n/numHebras)*(i+1));
+            hebras[numHebras-1] = new prodEscalarParalelo(numHebras-1,(n/numHebras)* (numHebras-1), n);
+        }
+        //inicio del producto
         long iniTiempo = System.nanoTime();
         for(int i = 0 ; i < numHebras ; i++) hebras[i].start();
         for(int i = 0 ; i < numHebras ; i++) hebras[i].join();
