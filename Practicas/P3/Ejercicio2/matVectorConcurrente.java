@@ -39,7 +39,7 @@ public class matVectorConcurrente extends Thread{
         A = new int[n][n];
         b = new int[n];
         y = new int[n];
-        int numThreads = 2;
+        int numThreads = 8;
         Random g = new Random(System.nanoTime());
 
         //Rellenando matrices

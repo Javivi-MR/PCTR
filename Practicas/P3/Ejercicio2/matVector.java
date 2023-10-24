@@ -2,7 +2,7 @@ import java.util.Random;
 
 public class matVector {
     public static void main(String[] args){
-        int n = 10000;
+        int n = 5000;
         int[][] A;
         A = new int[n][n];
         int[] b,y;

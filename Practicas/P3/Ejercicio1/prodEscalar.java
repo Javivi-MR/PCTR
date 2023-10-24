@@ -1,7 +1,8 @@
 public class prodEscalar {
     public static void main(String[] args){
-        double[] v = new double[1000000];
-        double[] w = new double[1000000];
+        int n = 50000000;
+        double[] v = new double[n];
+        double[] w = new double[n];
         //llenando el vector
         for(int i=0; i<v.length; i++)v[i]=Math.random();
         for(int i=0; i<v.length; i++)w[i]=Math.random();

@@ -20,8 +20,8 @@ public class prodEscalarParalelo extends Thread{
     }
 
     public static void main(String[] args) throws InterruptedException{
-        int numHebras = 4;
-        int n = 1000000;
+        int numHebras = 8;
+        int n = 100000000;
         a = new double[n];
         b = new double[n];
         double sumaTotal = 0;
@@ -46,7 +46,7 @@ public class prodEscalarParalelo extends Thread{
         for(int i = 0 ; i < numHebras ; i++) sumaTotal += sumasParciales[i];
         long finTiempo = System.nanoTime();
 
-        System.out.println("Metodo secuencial: ");
+        System.out.println("Metodo paralelo: ");
         System.out.println("El tiempo del producto escalar - " + (finTiempo-iniTiempo)/1000000 + " miliseg y su suma total es: " + sumaTotal);   
     }
 }
