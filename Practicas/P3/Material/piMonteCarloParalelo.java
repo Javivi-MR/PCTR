@@ -24,10 +24,13 @@ public class piMonteCarloParalelo extends Thread{
     long exitosSec   = 0;
     
     //procesamieto en secuencial...
+    ThreadLocalRandom g = ThreadLocalRandom.current();	//generador de puntos aleatorio para CADA HEBRA
     long inicTiempo = System.nanoTime();
     for(long j=0; j<nVueltas; j++){
-      cxx = Math.random();
-      cyy = Math.random();
+      //cxx = Math.random(); Math.random es bloqueante, ademas cada vez que se ejecuta, estas instanciando un objeto. Entonces esto añade una carga inmensa de trabajo al secuencial.
+      //cyy = Math.random(); Gracias juan carlos :)
+      cxx = g.nextDouble(1.0);
+      cyy = g.nextDouble(1.0);
       if(Math.sqrt(Math.pow(cxx, 2)+Math.pow(cyy, 2))<=1)
         exitosSec++;
     }
