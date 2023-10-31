@@ -1,0 +1,14 @@
+Cosas a tener en cuenta de la exlusion mutua:
+    - Si un proceso esta en la seccion critica, ningun otro proceso puede estar en la seccion critica
+    - No puede haber un deadlock (bloqueo mutuo) entre los procesos
+    - No puede haber procesos ansiosos (starvation) (un proceso no puede estar esperando para entrar a la seccion critica por siempre)
+    - En ausencia de contencion en el acceso a la seccion critica, un proceso que quiera ejecutarla deberia poder hacerlo inmediatamente las veces que quiera
+    - Esta cuarta exigencia no se cumple para tryOne.Java
+    - La primera no se cumple para tryTwo.Java. Se produce un entrelazado en las instrucciones de cambios de flags
+    - En el tercer intento se puede poner wantp y wantq a true a la vez. Dando como resultado un deadlock en ambos procesos
+    - En un enfoque teorico, se tienen que cumplir las cuatro exigencias. En la practica, se pueden relajar algunas de ellas (3 y 4).
+    - El algoritmo de dekker (matematicamente y teniendo en cuenta ciertas arquitecturas), si cumple las cuatro exigencias.
+
+    
+Cosas a tener en cuenta de volatile en Java:
+    - No se puede usar para garantizar la exclusion mutua.

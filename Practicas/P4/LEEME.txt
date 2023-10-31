@@ -1,0 +1,2 @@
+Es MUY importante que leas lo que hablan los libros de la bibliografia acerca de los 4 intentos de sincronizacion y tambien del algoritmo de dekker.
+Proximamente escribire en este fichero lo mas importante de los libros.
