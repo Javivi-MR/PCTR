@@ -1,0 +1,20 @@
+Es un TAD que provee al usuario dos propiedades:
+	Provee al usuario el acceso a los metodos de ese TAD en exclusion mutua
+	Incoorpora aspectos de sincronizacion interhebras como las variables de condicion
+SE DEBEN CUMPLIR AMBAS
+
+El monitor por el hecho de serlo, todos sus metodos son en exclusion mutua.
+Tiene una cola por heredar de Object, luego tiene otras colas por cada variable de condicion.
+
+Una hebra accede al monitor, si una de las variables de condicion no se cumple, se bloquea y pasa a la cola de esa variable de condicion. (wait y pasandole por referencia la variable de condicion)
+
+En java NO TENEMOS COLAS DE VARIABLES DE CONDICION, tenemos una sola, y repito, UNA SOLA, de wait-set. Extrae hebra de manera incondicional y aparametrica. wait().
+Productoras y consumidoras se duermen en la misma cola. No puedo despertar a una hebra en particular, solo a todas las que estan en la cola o a una (inservible).
+las variables de guarda tienen dos utilidades: 
+	1) para que la hebra se duerma
+	2) para que no se produzcan problemas cuando se despierte la hebra
+
+Un semaforo posee un contador y *una cola de hebras*. 
+El contador es el numero de recursos disponibles. 
+Si el contador es 0, la hebra se duerme en la cola de hebras.  wait y signal se hacen en e. m. y wait decrementa el contador y signal lo incrementa.
+Si el contador es mayor a 0, la hebra se despierta y se decrementa el contador.

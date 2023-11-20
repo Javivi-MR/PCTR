@@ -1,0 +1,9 @@
+La operacion accept, es bloqueante, hace que el servidor espere alguna peticion. Ademas instancia un objeto Socket (hacer accept, devuelve un socket (tuberia de conexion))
+Ademas con accept se ocupa otro puerto para la comunicacion con el cliente, por lo que el servidor puede seguir recibiendo peticiones de otros clientes a traves del puerto original.
+Para evitar problemas de latencia, es mejor usar un ejecutor de hilos, para que cada peticion se ejecute en un hilo diferente y ya esten listos para recibir otra peticion.
+
+Todo objeto (hereda de Object en java) tiene un cerrojo, que se usa para sincronizar el acceso a los metodos de ese objeto. Si un hilo esta usando un metodo de un objeto, otro hilo no puede usar ese metodo hasta que el primero termine de usarlo.
+Ademas de un wait-set (cola de espera), que es donde se ponen los hilos que quieren usar un metodo de un objeto, pero no pueden porque otro hilo lo esta usando. Cuando el hilo que lo esta usando termina, se despierta al primer hilo de la cola de espera y se le da acceso al metodo.
+Lo normal es declarar un object compartido y usarlo como cerrojo. Porque cada objeto de la clase secureCriticalSection tiene un cerrojo, si usamos el this, se accede al lock DE CADA UNO y viven la vida loca
+
+Para que una clase sea un monitor, todos sus metodos deben ser synchronized. PERO NO BASTA CON ESTO, ademas deben garamtizar un acceso en exclusion mutua con VARIABLES DE SINCRONIZACION!!!!!
