@@ -1,0 +1,31 @@
+Escribir un monitor con un unico procedimiento llamado entrada(), que provoque la suspension de los primeros procesos que llamen al procedimiento, 
+mientras el tercero que lo llama y apartir de ahi el ciclo se repite de forma ciclica
+
+contador: integer
+cola: condition
+
+Procedure entrada
+begin
+    contador = contador + 1;
+    if contador < 3
+        wait(cola)
+    contador = 0
+        send(cola)
+        send(cola)
+end
+
+procedure main
+begin 
+    contador := 0
+    cobegin
+        hilo_0; hilo_1; ... hilo_n;
+    coend
+end
+*/
+
+procedure hilo_i
+begin
+    loop
+        ciclo.entrada()
+    forever
+end

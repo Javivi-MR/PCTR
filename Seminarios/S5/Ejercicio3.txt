@@ -1,0 +1,36 @@
+Una serie de procesos llaman a un procedimiento bloquear(n) de un monitor, donde n es un entero entre 1 y 10. Todos los procesos que llaman
+a este procedimiento son bloqueados hasta que otro proceso llamado procedimiento liberar del mismo monitor.Los procesos bloqueados hasta el
+momento deben ser liberados en el orden establecido por el parametron. Cuando todos estos procesos han sido liberados, el proceso liberador podra continuar. 
+Se pide programar el monitor con la semantica cita.
+
+monitor prioridad
+bloqueados: integer = 0
+colaPrioridad: array of Condition
+colaEspera , colaLiberador: Condition
+liberando : boolean = false
+
+procedure bloquear(n: integer)
+begin
+    if(liberando = true)
+        wait(colaEspera)
+
+    bloqueados = bloqueados + 1
+    wait(colaPrioridad[n])
+    bloqueados = bloqueados - 1
+    if bloqueados = 0
+        send(colaLiberador)
+end
+
+procedure liberar
+begin
+    liberando = true
+    for i = 1 to 10
+        send(colaPrioridad[i])
+    
+    if bloqueados > 0
+        wait(colaLiberador)
+
+    liberando = false
+    for i = 1 to 10
+        send(colaEspera)
+end

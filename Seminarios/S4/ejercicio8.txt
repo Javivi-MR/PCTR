@@ -1,0 +1,25 @@
+Procedure filosofo_i
+begin
+    loop
+        region L when libre[i] and libre[(i+1)%5] do
+        begin
+            libre[i] := false;
+            libre[(i+1)%5] := false;
+        end L;
+        comer();
+        region L do // esta region no es necesaria, porque nadie va a tocar los palillos, solo el que los ha cogido. Pero mejor protejerla
+            libre[i] := true;
+            libre[(i+1)%5] := true;
+        end;
+    forever;
+end
+
+Procedure filosofos
+begin
+    for i = 0 to 4 do
+        libre[i] := true;
+    
+    cobegin
+        filosofo_0 ... filosofo_4;
+    coend;
+end
