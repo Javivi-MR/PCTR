@@ -1,0 +1,50 @@
+public class usocuentaCompartida implements Runnable{
+    private int id;
+    private cuentaCompartida c;
+
+    public usocuentaCompartida(int id, cuentaCompartida c){
+        this.id = id;
+        this.c = c;
+    }
+
+    public void run(){
+        try{
+            if(id == 1){
+                System.out.println("El hilo con id 1 inserta 1000");
+                c.ingreso(1000);
+            }
+            if(id == 2)
+            {
+                System.out.println("El hilo con id 2 intenta reintegrar 2000");
+                c.reintegro(2000);
+            }
+            if(id == 3)
+            {
+                System.out.println("El hilo con id 3 inserta 500");
+                c.ingreso(500);
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public static void main(String[] args){
+        cuentaCompartida c = new cuentaCompartida();
+
+        Thread h1 = new Thread(new usocuentaCompartida(1,c));
+        Thread h2 = new Thread(new usocuentaCompartida(2,c));
+        Thread h3 = new Thread(new usocuentaCompartida(3,c));
+        Thread h4 = new Thread(new usocuentaCompartida(3,c));
+
+        h1.start(); h2.start(); h3.start(); h4.start();
+
+        try{
+            h1.join(); h2.join(); h3.join(); h4.join();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        System.out.println("Si lees esto, no existe ningun problema con la configuracion de los hilos");
+    }
+
+}
