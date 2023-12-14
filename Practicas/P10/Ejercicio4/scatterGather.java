@@ -5,6 +5,7 @@ import mpi.MPI;
 public class scatterGather {
     //javac -cp C:\mpj-v0_44\lib\mpj.jar .\Fichero.java
     //mpjrun.bat -np 10 NombreFicheroClase
+    //ESTA DISEÑADO PARA 10
     
     public static void main(String[] args){
         MPI.Init(args);
@@ -13,8 +14,8 @@ public class scatterGather {
         int emisor = 0;
         int recvBufferSize = 1;
         int sendBufferSize = recvBufferSize * size;
-        int[] sendBuffer = new int[10];
-        int[] recvBuffer = new int[1];
+        int[] sendBuffer = new int[sendBufferSize];
+        int[] recvBuffer = new int[recvBufferSize];
 
         if(rank == 0){
             for(int i = 0 ; i < sendBufferSize ; i++){
