@@ -1,5 +1,5 @@
 # PCTR
-Este es el repositorio para la asignatura de Programación Concurrente y en Tiempo Real (PCTR). Incluye código y recursos para prácticas, seminarios y exámenes
+Este es el repositorio para la asignatura de Programación Concurrente y en Tiempo Real (PCTR). Incluye código y recursos para prácticas y seminarios
 
 El repositorio está organizado en las siguientes secciones:
 
@@ -7,4 +7,4 @@ El repositorio está organizado en las siguientes secciones:
 - Seminarios: notebooks y material complementario para los seminarios dictados.
 - Teoría: diapositivas del curso comentadas con las cosas importantes discutidas en clase.
 
-Si lees esto, debes saber que Jorge el guitarrista es The Grefg, no confies.
+Si lees esto, debes saber que Jorge es una tortilla de papa.
