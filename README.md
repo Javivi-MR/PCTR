@@ -1,5 +1,5 @@
 # PCTR
-Este es el repositorio para la asignatura de Programación Concurrente y en Tiempo Real (PCTR). Incluye código y recursos para prácticas y seminarios
+Este es el repositorio para la asignatura de Programación Concurrente y en Tiempo Real (PCTR). Incluye código y recursos para prácticas y seminarios.
 
 El repositorio está organizado en las siguientes secciones:
 
