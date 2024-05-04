@@ -5,33 +5,48 @@ public class lecEscAN {
     private ReentrantLock lock;
     private Condition isFull;
     private Condition isEmpty;
-    private int n,indL,indE;
+    private int n, indL, indE;
     private int[] buffer;
 
-    public lecEscAN(int n){
+    public lecEscAN(int n) {
         this.lock = new ReentrantLock();
         this.isFull = lock.newCondition();
         this.isEmpty = lock.newCondition();
         this.n = n;
-        this.indE = 0; this.indL = 0;
+        this.indL = 0;
+        this.indE = 0;
         this.buffer = new int[n];
     }
 
-    public int leer(){
-        while(indL >= indE){
-            try{isEmpty.wait();}catch(Exception e){e.printStackTrace();};
+    public int leer() throws InterruptedException {
+        lock.lock();
+        try {
+            while (indL >= indE) {
+                isEmpty.await();
+            }
+
+            indL++;
+            isFull.signal();
+            return buffer[indL - 1];
+        } finally {
+            lock.unlock();
         }
-        indL++;
-        isFull.signal();
-        return buffer[indL-1];
     }
 
-    public void escribir(int value){
-        while(indE-indL > 0){
-            try{isFull.await();}catch(Exception e){e.printStackTrace();}
+    public void escribir(int valor) {
+        lock.lock();
+        try {
+            while (indE - indL >= n) {
+                isFull.await();
+            }
+
+            buffer[indE % n] = valor;
+            indE++;
+            isEmpty.signal();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } finally {
+            lock.unlock();
         }
-        buffer[indE % n] = value;
-        indE++;
-        isEmpty.signal();
     }
 }
