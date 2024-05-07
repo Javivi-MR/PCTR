@@ -1,32 +1,28 @@
+import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class cCLR extends Thread{
-    public static ReentrantLock lock = new ReentrantLock();
-    public static int n = 0;
+public class cCLR {
+    public int saldo;
+    public ReentrantLock lock = new ReentrantLock();
+    Condition saldoSuficiente = lock.newCondition();
 
-    public cCLR(){}
+    public cCLR(int saldo) {
+        this.saldo = saldo;
+    }
 
-    public void run(){
-        for(int i = 0 ; i < 4000000 ; i++){
-            lock.lock();
-            n++;
-            lock.unlock();
+    public void ingreso(int cuantia) {
+        lock.lock();
+        saldo += cuantia;
+        saldoSuficiente.signalAll();
+        lock.unlock();
+    }
+
+    public void reintegro(int cuantia) throws InterruptedException {
+        lock.lock();
+        while (saldo < cuantia) {
+            try{ saldoSuficiente.await();} catch(Exception e){e.printStackTrace();}
         }
+        saldo -= cuantia;
+        lock.unlock();
     }
-
-    public static void main(String[] args){
-        cCLR th1 = new cCLR();
-        cCLR th2 = new cCLR();
-        cCLR th3 = new cCLR();
-
-
-        th1.start(); th2.start(); th3.start();
-
-        try{
-            th1.join(); th2.join(); th3.join();
-        }catch(Exception e){e.printStackTrace();}
-
-        System.out.println("Valor final de n: " + n);
-    }
-
 }
