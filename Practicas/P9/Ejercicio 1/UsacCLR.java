@@ -1,47 +1,50 @@
-public class UsacCLR implements Runnable {
-    private cCLR c;
+public class UsacCLR implements Runnable{
     private int id;
-    private int ingresar;
-    private int retirar;
+    private cCLR c;
 
-    public UsacCLR(cCLR c, int id, int ingresar, int retirar) {
+    public UsacCLR(int id, cCLR c){
         this.id = id;
-        this.ingresar = ingresar;
-        this.retirar = retirar;
         this.c = c;
     }
 
-    public void run() {
-        while (true) {
-            try {
-                c.ingreso(ingresar);
-                System.out.println("El titular " + id + " ha ingresado " + ingresar + " euros");
-                System.out.println("Saldo actual: " + c.saldo);
-                c.reintegro(retirar);
-                System.out.println("El titular " + id + " ha retirado " + retirar + " euros");
-                System.out.println("Saldo actual: " + c.saldo);
-            } catch (Exception e) {
-                e.printStackTrace();
+    public void run(){
+        try{
+            if(id == 1){
+                System.out.println("El hilo con id 1 inserta 1000");
+                c.ingreso(1000);
             }
+            if(id == 2)
+            {
+                System.out.println("El hilo con id 2 intenta reintegrar 200");
+                c.reintegro(200);
+            }
+            if(id == 3)
+            {
+                System.out.println("El hilo con id 3 inserta 500");
+                c.ingreso(500);
+            }
+        }catch(Exception e){
+            e.printStackTrace();
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args){
         cCLR c = new cCLR(300);
 
-        Thread h1 = new Thread(new UsacCLR(c, 1, 200, 400));
-        Thread h2 = new Thread(new UsacCLR(c, 2, 100, 400));
+        Thread h1 = new Thread(new UsacCLR(1,c));
+        Thread h2 = new Thread(new UsacCLR(2,c));
+        Thread h3 = new Thread(new UsacCLR(3,c));
+        Thread h4 = new Thread(new UsacCLR(3,c));
 
-        h1.start();
-        h2.start();
+        h1.start(); h2.start(); h3.start(); h4.start();
 
-        try {
-            h1.join();
-            h2.join();
-        } catch (Exception e) {
+        try{
+            h1.join(); h2.join(); h3.join(); h4.join();
+        }catch(Exception e){
             e.printStackTrace();
         }
 
-        System.out.println("Saldo final: " + c.saldo);
+        System.out.println("Si lees esto, no existe ningun problema con la configuracion de los hilos. Valor final de la cuenta: " + c.saldo + "$");
     }
+
 }
