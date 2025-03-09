@@ -1,0 +1,6 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "c:\\mpj-v0_44\\lib\\mpj.jar"
+    ]
+}
